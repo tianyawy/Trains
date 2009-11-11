@@ -1,0 +1,1 @@
+lib\MSBuild\MSBuild.exe Trains.MSBuild /target:Test & pause

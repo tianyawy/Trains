@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Import the MSBuild Tasks -->
+  <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets" />
+  
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <ClassLibraryOutputDirectory>Trains\Core\bin\$(Configuration)</ClassLibraryOutputDirectory>
+	<SolutionDir>src</SolutionDir>	
+    <CoreProjectDir>$(SolutionDir)\Trains.Core</CoreProjectDir >
+    <TestProjectDir>$(SolutionDir)\Trains.Tests</TestProjectDir >
+	
+	
+    <CoreProjectFile>$(CoreProjectDir)\Core.csproj</CoreProjectFile >
+    <TestProjectFile>$(TestProjectDir)\Tests.csproj</TestProjectFile >	
+		
+    
+  </PropertyGroup>  
+  
+  <Target Name="Build">
+    <MSBuild Projects="$(CoreProjectFile)" />
+    <MSBuild Projects="$(TestProjectFile)" />	
+  </Target>
+  
+  <Target Name="Test" DependsOnTargets="Build">
+	<ItemGroup>
+		<TestAssembly Include="$(TestProjectDir)\bin\$(Configuration)\*.Test.dll" />
+	</ItemGroup>
+    <NUnit Assemblies="@(TestAssembly)" ToolPath="lib\NUnit\"/>
+  </Target>          
+  
+</Project>
+
