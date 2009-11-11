@@ -11,9 +11,7 @@
     <TestProjectDir>$(SolutionDir)\Tests</TestProjectDir >	
     <CoreProjectFile>$(CoreProjectDir)\Core.csproj</CoreProjectFile >
     <TestProjectFile>$(TestProjectDir)\Tests.csproj</TestProjectFile >	
-	<RSharperDir>$(SolutionDir)\_ReSharper.Trains</RSharperDir>
-		
-    
+	<RSharperDir>$(SolutionDir)\_ReSharper.Trains</RSharperDir>    
   </PropertyGroup>  
   
   <Target Name="Build">
@@ -25,15 +23,17 @@
 	<ItemGroup>
 		<TestAssembly Include="$(TestProjectDir)\bin\$(Configuration)\*.Test.dll" />
 	</ItemGroup>
-    <NUnit Assemblies="@(TestAssembly)" ToolPath="lib\NUnit\"/>
-	<Delete Files="TestResult.xml" />
+    <NUnit Assemblies="@(TestAssembly)" ToolPath="lib\NUnit\"/>	
   </Target>          
   
   <Target Name="Clean" DependsOnTargets="Test">
-  <RemoveDir Directories="$(RSharperDir)" />
-  <RemoveDir Directories="$(CoreProjectDir)\obj" />
-  <RemoveDir Directories="$(TestProjectDir)\obj" />
-  <Delete Files="$(SolutionDir)\Trains.4.5.resharper.user" />
+	<RemoveDir Directories="$(RSharperDir)" />
+	<RemoveDir Directories="$(CoreProjectDir)\obj" />
+	<RemoveDir Directories="$(CoreProjectDir)\bin" />
+	<RemoveDir Directories="$(TestProjectDir)\obj" />
+	<RemoveDir Directories="$(TestProjectDir)\bin" />
+	<Delete Files="$(SolutionDir)\Trains.4.5.resharper.user" />
+	<Delete Files="TestResult.xml" />
   </Target>
   
 </Project>
