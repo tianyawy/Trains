@@ -1,0 +1,7 @@
+C:\dev\work\ThoughtWorks\CodeSamples\Trains\src\Core\bin\Debug\Trains.Core.Contracts.dll
+C:\dev\work\ThoughtWorks\CodeSamples\Trains\src\Core\bin\Debug\Trains.Core.Contracts.pdb
+C:\dev\work\ThoughtWorks\CodeSamples\Trains\src\Core\bin\Debug\Trains.Core.dll
+C:\dev\work\ThoughtWorks\CodeSamples\Trains\src\Core\bin\Debug\Trains.Core.pdb
+C:\dev\work\ThoughtWorks\CodeSamples\Trains\src\Core\obj\Debug\ResolveAssemblyReference.cache
+C:\dev\work\ThoughtWorks\CodeSamples\Trains\src\Core\obj\Debug\Trains.Core.dll
+C:\dev\work\ThoughtWorks\CodeSamples\Trains\src\Core\obj\Debug\Trains.Core.pdb
