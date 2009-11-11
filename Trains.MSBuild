@@ -31,6 +31,8 @@
   
   <Target Name="Clean" DependsOnTargets="Test">
   <RemoveDir Directories="$(RSharperDir)" />
+  <RemoveDir Directories="$(CoreProjectDir)\obj" />
+  <RemoveDir Directories="$(TestProjectDir)\obj" />
   <Delete Files="$(SolutionDir)\Trains.4.5.resharper.user" />
   </Target>
   
