@@ -26,6 +26,7 @@
 		<TestAssembly Include="$(TestProjectDir)\bin\$(Configuration)\*.Test.dll" />
 	</ItemGroup>
     <NUnit Assemblies="@(TestAssembly)" ToolPath="lib\NUnit\"/>
+	<Delete Files="TestResult.xml" />
   </Target>          
   
   <Target Name="Clean" DependsOnTargets="Test">
