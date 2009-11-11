@@ -5,14 +5,13 @@
   
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <ClassLibraryOutputDirectory>Trains\Core\bin\$(Configuration)</ClassLibraryOutputDirectory>
+    <ClassLibraryOutputDirectory>src\Trains\Core\bin\$(Configuration)</ClassLibraryOutputDirectory>
 	<SolutionDir>src</SolutionDir>	
-    <CoreProjectDir>$(SolutionDir)\Trains.Core</CoreProjectDir >
-    <TestProjectDir>$(SolutionDir)\Trains.Tests</TestProjectDir >
-	
-	
+    <CoreProjectDir>$(SolutionDir)\Core</CoreProjectDir >
+    <TestProjectDir>$(SolutionDir)\Tests</TestProjectDir >	
     <CoreProjectFile>$(CoreProjectDir)\Core.csproj</CoreProjectFile >
     <TestProjectFile>$(TestProjectDir)\Tests.csproj</TestProjectFile >	
+	<RSharperDir>$(SolutionDir)\_ReSharper.Trains</RSharperDir>
 		
     
   </PropertyGroup>  
@@ -28,6 +27,11 @@
 	</ItemGroup>
     <NUnit Assemblies="@(TestAssembly)" ToolPath="lib\NUnit\"/>
   </Target>          
+  
+  <Target Name="Clean" DependsOnTargets="Test">
+  <RemoveDir Directories="$(RSharperDir)" />
+  <Delete Files="$(SolutionDir)\Trains.4.5.resharper.user" />
+  </Target>
   
 </Project>
 
