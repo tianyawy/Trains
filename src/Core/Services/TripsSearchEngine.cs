@@ -38,36 +38,6 @@ namespace Trains.Core.Services
             return GetPossibleRoutesFor(start, breakCriteria, addRouteCriteria);
         }
 
-
-        public IList<ITrip> GetPossibleRoutesFor(Node start, Func<ITrip, bool> breakCriteria, Func<ITrip, bool> addRouteCriteria)
-        {
-            var search = FluentConfiguration.Fluently()
-                 .defineGraph(_graph)
-                 .breakExecutionCriteria(breakCriteria)
-                 .addRouteCriteria(addRouteCriteria)
-                 .breakAfterAddingRoute(true)
-                 .trip(new Trip(start))
-                 .algorithm(Algorithms.DFS)
-                 .Configure();
-
-            return search.run();
-        }
-
-        public IList<ITrip> GetPossibleRoutesFor(Node start, Func<ITrip, bool> breakCriteria, Func<ITrip, bool> addRouteCriteria, bool shouldBreak)
-        {
-            var search = FluentConfiguration.Fluently()
-                 .defineGraph(_graph)
-                 .breakExecutionCriteria(breakCriteria)
-                 .addRouteCriteria(addRouteCriteria)
-                 .breakAfterAddingRoute(shouldBreak)
-                 .trip(new Trip(start))
-                 .algorithm(Algorithms.DFS)
-                 .Configure();
-
-            return search.run();
-        }
-
-
         public ITrip GetShortestRouteBetween(char start, char end)
         {
             var search = FluentConfiguration.Fluently()
@@ -85,7 +55,29 @@ namespace Trains.Core.Services
             Func<ITrip, bool> addRouteCriteria =
                 (x => (!x.IsEmpty()) && (x.StartNode().Equals(start)) && (x.LastNode().Equals(end)));
 
-            return GetPossibleRoutesFor(start, breakCriteria, addRouteCriteria,false);
+            return GetPossibleRoutesFor(start, breakCriteria, addRouteCriteria, false);
         }
+
+        private IList<ITrip> GetPossibleRoutesFor(Node start, Func<ITrip, bool> breakCriteria, Func<ITrip, bool> addRouteCriteria)
+        {
+            return GetPossibleRoutesFor(start, breakCriteria, addRouteCriteria, true);
+        }
+
+        private IList<ITrip> GetPossibleRoutesFor(Node start, Func<ITrip, bool> breakCriteria, Func<ITrip, bool> addRouteCriteria, bool shouldBreak)
+        {
+            var search = FluentConfiguration.Fluently()
+                 .defineGraph(_graph)
+                 .breakExecutionCriteria(breakCriteria)
+                 .addRouteCriteria(addRouteCriteria)
+                 .breakAfterAddingRoute(shouldBreak)
+                 .trip(new Trip(start))
+                 .algorithm(Algorithms.DFS)
+                 .Configure();
+
+            return search.run();
+        }
+
+
+
     }
 }
