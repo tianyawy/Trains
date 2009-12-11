@@ -1,3 +1,4 @@
+using System;
 using NUnit.Framework;
 using Trains.Core.Domain;
 using Trains.Core.Services;
@@ -57,7 +58,7 @@ namespace Trains.Test
         [Test]
         public void should_get_inexistent_route_exception_for_route_AED()
         {
-            Assert.Throws<InexistentRouteException>(delegate { engine.GetDistanceFromRoute("A-E-D"); });
+            Assert.Throws(typeof(InexistentRouteException),() => engine.GetDistanceFromRoute("A-E-D"));
         }
 
         [Test]
